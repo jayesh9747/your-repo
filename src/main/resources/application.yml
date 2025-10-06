@@ -1,0 +1,9 @@
+app:
+  identity:
+    name: "John Doe"
+    regNo: "REG12347"
+    email: "john@example.com"
+
+remote:
+  generateWebhookUrl: "https://bfhldevapigw.healthrx.co.in/hiring/generateWebhook/JAVA"
+  testWebhookFallbackUrl: "https://bfhldevapigw.healthrx.co.in/hiring/testWebhook/JAVA"
