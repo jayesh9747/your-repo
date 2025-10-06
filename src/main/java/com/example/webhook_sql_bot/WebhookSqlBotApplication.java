@@ -32,7 +32,6 @@ public class WebhookSqlBotApplication {
   @Bean
   ApplicationRunner runner() {
     return args -> {
-      // Step 1: Generate webhook
       var reqBody = new GenerateWebhookRequest(appProps.getName(), appProps.getRegNo(), appProps.getEmail());
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
@@ -53,7 +52,6 @@ public class WebhookSqlBotApplication {
       int lastTwo = extractLastTwoDigits(appProps.getRegNo());
       boolean isOdd = (lastTwo % 2) == 1;
 
-      // Step 2: Prepare final SQL
       String finalQuery;
       if (isOdd) {
         finalQuery = """
@@ -75,7 +73,6 @@ public class WebhookSqlBotApplication {
 
       Files.writeString(Path.of("finalQuery.sql"), finalQuery);
 
-      // Step 3: Send final query
       HttpHeaders headers2 = new HttpHeaders();
       headers2.setContentType(MediaType.APPLICATION_JSON);
       headers2.set("Authorization", accessToken);
